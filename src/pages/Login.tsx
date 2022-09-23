@@ -45,6 +45,12 @@ export default function SignIn(props: any) {
     props.setAuth(true)
     navigate("/home");
   }
+
+  function handleClickRegister(){
+    props.toggleShow(false)
+    navigate("/register");
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -105,7 +111,7 @@ export default function SignIn(props: any) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" onClick={handleClickRegister}>
                   {"Não possui uma conta? Cadastra"}
                 </Link>
               </Grid>

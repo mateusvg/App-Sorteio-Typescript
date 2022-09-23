@@ -5,17 +5,25 @@ import HomePage from './pages/Home';
 import Rafle from './pages/Rafle'
 import App from './componets/AppBar'
 import Login from './pages/Login'
+import Register from './pages/Register'
 
 export interface IApplicationProps { }
 
 const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
-const [auth, setAuth] = useState(false);
+    const [auth, setAuth] = useState(false);
+    const [show, setShow] = useState(true);
+
 
     if (!auth) return (
         <BrowserRouter>
-            <Login setAuth={setAuth} />
+        { show ? <Login setAuth={setAuth} toggleShow={setShow} /> :             
+            <Routes>
+                <Route path="/register" element={<Register toggleShow={setShow} />} />
+            </Routes> }
+            
         </BrowserRouter>
+
     );
 
     return (
