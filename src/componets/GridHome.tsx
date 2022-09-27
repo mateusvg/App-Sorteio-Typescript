@@ -42,8 +42,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function sortear(){
-    console.log()
+function sortear(idRaffle: any){
+     console.log(idRaffle)
 }
 
 export default function CustomizedTables() {
@@ -53,7 +53,7 @@ export default function CustomizedTables() {
 
     useEffect(() => {
         const apiGetRaffles = async () => {
-            const data = await fetch("https://good-luck-app-back-end.herokuapp.com/raffle/all", {
+            const data = await fetch("http://localhost:8080/raffle/all", {
                 method: "GET"
             });
             const jsonData = await data.json();
@@ -87,7 +87,7 @@ export default function CustomizedTables() {
                                 <StyledTableCell align="center">{row.RaffleUserDrawn}</StyledTableCell>
                                 <StyledTableCell align="center">{row.date}</StyledTableCell>
                                 <StyledTableCell align="center">{row.description}</StyledTableCell>
-                                <StyledTableCell align="center"><Button variant="outlined" color="error" onClick={sortear} >Sortear</Button>
+                                <StyledTableCell align="center"><Button variant="outlined" color="error" onClick={() => sortear(row.idRaffle)} >Sortear</Button>
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}

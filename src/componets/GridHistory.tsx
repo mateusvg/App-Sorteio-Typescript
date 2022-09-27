@@ -48,9 +48,8 @@ export default function CustomizedTables() {
 
   const [result, setResult] = useState<resultProps[]>([]);
 
-  function downloadRaffle(){
+  function downloadRaffle(...data: any){
     const element = document.createElement("a");
-    var data = result 
     var teste = JSON.stringify(data)
     const file = new Blob([teste], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
@@ -61,7 +60,7 @@ export default function CustomizedTables() {
 
   useEffect(() => {
     const apiGetRaffles = async () => {
-      const data = await fetch("https://good-luck-app-back-end.herokuapp.com/raffle/all", {
+      const data = await fetch("http://localhost:8080/raffle/all", {
         method: "GET"
       });
       const jsonData = await data.json();
@@ -100,7 +99,7 @@ export default function CustomizedTables() {
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
-                  onClick={downloadRaffle}
+                  onClick={()=>downloadRaffle(row.idRaffle, row.RaffleName, row.RaffleParticipants, row.RaffleUserDrawn, row.date, row.description)}
                   color="inherit"
                 >
                   <DownloadIcon />

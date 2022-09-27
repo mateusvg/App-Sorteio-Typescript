@@ -10,11 +10,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function MultilineTextFields(props: any) {
     const [value, setValue] = React.useState<Dayjs | null>(null);
-    console.log(value)
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const uri2 = 'https://good-luck-app-back-end.herokuapp.com/raffle/create';
+        const uri2 = 'http://localhost:8080/raffle/create';
         const postRafle = async () => {
             try {
                 const resp = await fetch(uri2, {
