@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from "react-router-dom";
 
 
@@ -73,7 +72,9 @@ const ResponsiveAppBar = (props: any) => {
                         }}
                         onClick={handleClickHome}
                     >
-                        GOOD LUCK
+                        <Button sx={{ my: 2, color: 'inherit', display: 'block', fontWeight: 700 }}>
+                            GOOD LUCK
+                        </Button>
                     </Typography>
 
                     {/*INICIO menu responsivo*/}

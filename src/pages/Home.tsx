@@ -1,11 +1,8 @@
-import React from 'react';
+import GridHome from '../componets/GridHome'
 
-export interface IHomePageProps { }
-const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
-    return (
-        <div>
-            <p>Home Page</p>
-        </div>
-    )
+export default function Home() {
+
+  return (
+    <GridHome/>
+  );
 }
-export default HomePage;
