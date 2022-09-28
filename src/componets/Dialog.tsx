@@ -5,24 +5,36 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState } from "react";
 
-export default function AlertDialog(args: any ) {
-  const [open, setOpen] = React.useState(false);
+export default function AlertDialog(args: any) {
+  const [open, setOpen] = useState(false);
 
   //Sorteio
-  const rndInt = Math.floor(Math.random() * args.RaffleParticipants) + 1
-  console.log(rndInt)
+  const [sorteio, setSorteio] = useState(0);
+  const sortear =  () => {
+    const rndInt = Math.floor(Math.random() * args.RaffleParticipants) + 1
+    setSorteio(rndInt)
+  }
+  //Api Update
+  const apiUpdateRaffle = async () => {
+    await fetch(`http://localhost:8080/raffle/raffle/${args.idRaffle}`, {
+      method: "PUT",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        idRafle: args.idRaffle,
+        numeroSorteado: `${sorteio}`
+      }),
+    });
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
-        console.log(args.idRaffle)
-        console.log(args.RaffleParticipants)
-        const apiUpdateRaffle = async () => {
-            await fetch(`http://localhost:8080/raffle/raffle/${args.idRaffle}`, {
-                method: "PUT"
-            });
-        };
-        apiUpdateRaffle()
+    apiUpdateRaffle()
+    sortear()
   };
 
   const handleClose = () => {
@@ -45,7 +57,7 @@ export default function AlertDialog(args: any ) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Numero sortetado: {rndInt}
+            Numero sorteado: {sorteio}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
