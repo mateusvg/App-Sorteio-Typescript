@@ -14,7 +14,7 @@ export default function AlertDialog(args: any) {
   const [sorteio, setSorteio] = useState(0);
   const sortear =  () => {
     const rndInt = Math.floor(Math.random() * args.RaffleParticipants) + 1
-    setSorteio(rndInt)
+    return rndInt
   }
   //Api Update
   const apiUpdateRaffle = async () => {
@@ -31,14 +31,14 @@ export default function AlertDialog(args: any) {
     });
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = async () => {
+    setSorteio(sortear)
     setOpen(true);
-    apiUpdateRaffle()
-    sortear()
   };
 
   const handleClose = () => {
     setOpen(false);
+    apiUpdateRaffle()
   };
 
   return (
