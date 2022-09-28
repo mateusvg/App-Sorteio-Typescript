@@ -25,7 +25,7 @@ export default function AlertDialog(args: any) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        idRafle: args.idRaffle,
+        idRaffle: args.idRaffle,
         numeroSorteado: `${sorteio}`
       }),
     });
