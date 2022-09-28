@@ -50,7 +50,7 @@ export default function CustomizedTables(idRaffle: any, RaffleParticipants: any 
     //     console.log(idRaffle)
     //     console.log(RaffleParticipants)
     //     const apiUpdateRaffle = async () => {
-    //         await fetch(`http://localhost:8080/raffle/raffle/${idRaffle}`, {
+    //         await fetch(`https://good-luck-app-back-end.herokuapp.com/raffle/raffle/${idRaffle}`, {
     //             method: "PUT"
     //         });
     //     };
@@ -62,7 +62,7 @@ export default function CustomizedTables(idRaffle: any, RaffleParticipants: any 
 
     useEffect(() => {
         const apiGetRaffles = async () => {
-            const data = await fetch("http://localhost:8080/raffle/all", {
+            const data = await fetch("https://good-luck-app-back-end.herokuapp.com/raffle/all", {
                 method: "GET"
             });
             const jsonData = await data.json();

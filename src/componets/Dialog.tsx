@@ -18,7 +18,7 @@ export default function AlertDialog(args: any) {
   }
   //Api Update
   const apiUpdateRaffle = async () => {
-    await fetch(`http://localhost:8080/raffle/raffle/${args.idRaffle}`, {
+    await fetch(`https://good-luck-app-back-end.herokuapp.com/raffle/raffle/${args.idRaffle}`, {
       method: "PUT",
       headers: {
         Accept: 'application/json',

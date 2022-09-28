@@ -60,7 +60,7 @@ export default function CustomizedTables() {
 
   useEffect(() => {
     const apiGetRaffles = async () => {
-      const data = await fetch("http://localhost:8080/raffle/all", {
+      const data = await fetch("https://good-luck-app-back-end.herokuapp.com/raffle/all", {
         method: "GET"
       });
       const jsonData = await data.json();
