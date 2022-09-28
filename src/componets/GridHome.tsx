@@ -25,7 +25,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.white,
         color: theme.palette.common.black,
-        topMargin:10
+        topMargin: 10
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
@@ -43,24 +43,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function CustomizedTables(idRaffle: any, RaffleParticipants: any ) {
-    
-
-    // function sortear(idRaffle: any, RaffleParticipants: any ){
-    //     console.log(idRaffle)
-    //     console.log(RaffleParticipants)
-    //     const apiUpdateRaffle = async () => {
-    //         await fetch(`https://good-luck-app-back-end.herokuapp.com/raffle/raffle/${idRaffle}`, {
-    //             method: "PUT"
-    //         });
-    //     };
-    //     apiUpdateRaffle()
-    // }
-
+export default function CustomizedTables(idRaffle: any, RaffleParticipants: any) {
 
     const [result, setResult] = useState<resultProps[]>([]);
 
     useEffect(() => {
+
         const apiGetRaffles = async () => {
             const data = await fetch("https://good-luck-app-back-end.herokuapp.com/raffle/all", {
                 method: "GET"
@@ -68,9 +56,12 @@ export default function CustomizedTables(idRaffle: any, RaffleParticipants: any 
             const jsonData = await data.json();
             setResult(jsonData);
         };
+        if(result){
+            apiGetRaffles();
+        }
         apiGetRaffles();
-    }, []);
-
+    }, [result]);
+    
     return (
         <div className="Home">
 
@@ -98,7 +89,7 @@ export default function CustomizedTables(idRaffle: any, RaffleParticipants: any 
                                 <StyledTableCell align="center">{row.description}</StyledTableCell>
                                 {/*<StyledTableCell align="center"><Button variant="outlined" color="error" onClick={() => sortear(row.idRaffle, row.RaffleParticipants )} >Sortear</Button>
                                 </StyledTableCell>*/}
-                                <StyledTableCell align="center"><Dialog idRaffle={row.idRaffle} RaffleParticipants={row.RaffleParticipants}/></StyledTableCell>
+                                <StyledTableCell align="center">{result && <Dialog idRaffle={row.idRaffle} RaffleParticipants={row.RaffleParticipants} />}</StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
