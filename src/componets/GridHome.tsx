@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { useState, useEffect } from "react";
+import Dialog from './Dialog'
 
 type resultProps = {
     name: string
@@ -42,12 +43,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function sortear(idRaffle: any){
-     console.log(idRaffle)
-}
 
-export default function CustomizedTables() {
+export default function CustomizedTables(idRaffle: any, RaffleParticipants: any ) {
     
+
+    // function sortear(idRaffle: any, RaffleParticipants: any ){
+    //     console.log(idRaffle)
+    //     console.log(RaffleParticipants)
+    //     const apiUpdateRaffle = async () => {
+    //         await fetch(`http://localhost:8080/raffle/raffle/${idRaffle}`, {
+    //             method: "PUT"
+    //         });
+    //     };
+    //     apiUpdateRaffle()
+    // }
+
 
     const [result, setResult] = useState<resultProps[]>([]);
 
@@ -87,8 +97,9 @@ export default function CustomizedTables() {
                                 <StyledTableCell align="center">{row.RaffleUserDrawn}</StyledTableCell>
                                 <StyledTableCell align="center">{row.date}</StyledTableCell>
                                 <StyledTableCell align="center">{row.description}</StyledTableCell>
-                                <StyledTableCell align="center"><Button variant="outlined" color="error" onClick={() => sortear(row.idRaffle)} >Sortear</Button>
-                                </StyledTableCell>
+                                {/*<StyledTableCell align="center"><Button variant="outlined" color="error" onClick={() => sortear(row.idRaffle, row.RaffleParticipants )} >Sortear</Button>
+                                </StyledTableCell>*/}
+                                <StyledTableCell align="center"><Dialog idRaffle={row.idRaffle} RaffleParticipants={row.RaffleParticipants}/></StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>

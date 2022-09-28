@@ -5,23 +5,24 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
 
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-export default function AlertDialogSlide() {
+export default function AlertDialog(args: any ) {
   const [open, setOpen] = React.useState(false);
+
+  //Sorteio
+  const rndInt = Math.floor(Math.random() * args.RaffleParticipants) + 1
+  console.log(rndInt)
 
   const handleClickOpen = () => {
     setOpen(true);
+        console.log(args.idRaffle)
+        console.log(args.RaffleParticipants)
+        const apiUpdateRaffle = async () => {
+            await fetch(`http://localhost:8080/raffle/raffle/${args.idRaffle}`, {
+                method: "PUT"
+            });
+        };
+        apiUpdateRaffle()
   };
 
   const handleClose = () => {
@@ -30,22 +31,25 @@ export default function AlertDialogSlide() {
 
   return (
     <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Sortear
+      </Button>
       <Dialog
         open={open}
-        TransitionComponent={Transition}
-        keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        <DialogTitle>{"Cadastro salvo com sucesso"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {"Sorteio realizado"}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Deseja voltar para a homepage?
+          <DialogContentText id="alert-dialog-description">
+            Numero sortetado: {rndInt}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Sim</Button>
-          <Button onClick={handleClose}>Não</Button>
+          <Button onClick={handleClose}>Fechar</Button>
         </DialogActions>
       </Dialog>
     </div>
