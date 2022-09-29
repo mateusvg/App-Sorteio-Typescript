@@ -66,7 +66,7 @@ export default function CustomizedTables() {
     dataSor = removeDloubleQuotes(dataSor)
     const file = new Blob([`Id ${id}\nTitulo: ${titulo}\nQuantidade Participantes: ${quatParti}\nNº Sorteado: ${nSorteado.replace(/['"]+/g, '')}\nData sorteio: ${dataSor}\nDescrição: ${descricao}\n`], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
-    element.download = "Sorteios.txt";
+    element.download = `Sorteio${id}.txt`
     element.click();
   }
 
