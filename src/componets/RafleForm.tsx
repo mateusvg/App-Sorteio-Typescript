@@ -8,8 +8,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+
 export default function MultilineTextFields(props: any) {
     const [value, setValue] = React.useState<Dayjs | null>(null);
+    const [nomeSorteio, setNomeSorteio] = React.useState('');
+    const [participantes, setParticipantes] = React.useState('');
+    const [descricao, setDescricao] = React.useState('');
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -34,8 +38,13 @@ export default function MultilineTextFields(props: any) {
             }
         }
         postRafle()
-    };
+        event.preventDefault()
+        setNomeSorteio('')
+        setParticipantes('')
+        setValue(null)
+        setDescricao('')
 
+    };
 
 
     return (
@@ -49,13 +58,15 @@ export default function MultilineTextFields(props: any) {
             onSubmit={handleSubmit}
         >
             <div>
-
+            
                 <TextField
                     id="outlined-textarea"
                     label="Nome Sorteio"
                     name="nomeSorteio"
                     placeholder="Sorteio"
                     multiline
+                    onChange={event => setNomeSorteio(event.target.value)}
+                    value={nomeSorteio}
                 />
 
                 <TextField
@@ -67,6 +78,8 @@ export default function MultilineTextFields(props: any) {
                     InputLabelProps={{
                         shrink: true,
                     }}
+                    onChange={event => setParticipantes(event.target.value)}
+                    value={participantes}
                 />
 
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -87,9 +100,11 @@ export default function MultilineTextFields(props: any) {
                     placeholder="Descrição Sorteio"
                     multiline
                     rows={4}
+                    onChange={event => setDescricao(event.target.value)}
+                    value={descricao}
                 />
             </div>
-            <Button type="submit" variant="contained" >
+            <Button type="submit" variant="contained">
                 Criar
             </Button>
         </Box>
