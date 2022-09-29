@@ -48,13 +48,25 @@ export default function CustomizedTables() {
 
   const [result, setResult] = useState<resultProps[]>([]);
 
+  function removeDloubleQuotes(txt: string): string{
+    let txtTreat = txt
+    return txtTreat.replace(/['"]+/g, '')
+  }
+
+  // Download file
   function downloadRaffle(...data: any){
     const element = document.createElement("a");
-    var teste = JSON.stringify(data)
-    const file = new Blob([teste], {type: 'text/plain'});
+    var id = JSON.stringify(data[0])
+    var titulo = JSON.stringify(data[1])
+    var quatParti = JSON.stringify(data[2])
+    var nSorteado = JSON.stringify(data[3])
+    var dataSor = JSON.stringify(data[4])
+    var descricao = JSON.stringify(data[0])
+    titulo =  removeDloubleQuotes(titulo)
+    dataSor = removeDloubleQuotes(dataSor)
+    const file = new Blob([`Id ${id}\nTitulo: ${titulo}\nQuantidade Participantes: ${quatParti}\nNº Sorteado: ${nSorteado.replace(/['"]+/g, '')}\nData sorteio: ${dataSor}\nDescrição: ${descricao}\n`], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
     element.download = "Sorteios.txt";
-    document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   }
 
@@ -94,7 +106,8 @@ export default function CustomizedTables() {
                 <StyledTableCell align="center">{row.RaffleUserDrawn}</StyledTableCell>
                 <StyledTableCell align="center">{row.date}</StyledTableCell>
                 <StyledTableCell align="center">{row.description}</StyledTableCell>
-                <StyledTableCell align="center">                        <IconButton
+                <StyledTableCell align="center">                        
+                <IconButton
                   size="large"
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
