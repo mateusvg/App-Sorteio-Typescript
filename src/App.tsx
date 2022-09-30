@@ -6,6 +6,8 @@ import Rafle from './pages/Rafle'
 import App from './componets/AppBar'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Dash from './pages/Dash'
+import Profile from './pages/Profile'
 
 export interface IApplicationProps { }
 
@@ -17,11 +19,11 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
     if (!auth) return (
         <BrowserRouter>
-        { show ? <Login setAuth={setAuth} toggleShow={setShow} /> :             
-            <Routes>
-                <Route path="/register" element={<Register toggleShow={setShow} />} />
-            </Routes> }
-            
+            {show ? <Login setAuth={setAuth} toggleShow={setShow} /> :
+                <Routes>
+                    <Route path="/register" element={<Register toggleShow={setShow} />} />
+                </Routes>}
+
         </BrowserRouter>
 
     );
@@ -30,6 +32,8 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
         <BrowserRouter>
             <App setAuth={setAuth} />
             <Routes>
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/dash" element={<Dash />} />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/rafle" element={<Rafle />} />
                 <Route path="/history" element={<History />} />

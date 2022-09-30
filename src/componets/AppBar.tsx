@@ -50,6 +50,14 @@ const ResponsiveAppBar = (props: any) => {
         navigate("/login");
     }
 
+    function handleClickDash() {
+        navigate("/dash");
+    }
+
+    function handleClickProfile() {
+        navigate("/profile");
+    }
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -181,14 +189,14 @@ const ResponsiveAppBar = (props: any) => {
                         >
 
                             <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">Profile</Typography>
+                                <Typography textAlign="center" onClick={handleClickProfile}>Profile</Typography>
                             </MenuItem>
 
-                            <MenuItem onClick={handleCloseUserMenu}>
+                            {/*<MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center">Account</Typography>
-                            </MenuItem>
+                        </MenuItem>*/}
                             <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">Dashboard</Typography>
+                                <Typography textAlign="center" onClick={handleClickDash}>Dashboard</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center" onClick={handleClickLogout}>Logout</Typography>
