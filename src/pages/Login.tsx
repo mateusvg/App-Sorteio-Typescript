@@ -56,6 +56,7 @@ export default function SignIn(props: any) {
             console.log('Usuário não validado')
             return false
           }else{
+            console.log(result.id)
             console.log('Usuário validado')
             return handleClickHome()
           }

@@ -60,7 +60,7 @@ export default function CustomizedTables(idRaffle: any, RaffleParticipants: any)
             apiGetRaffles();
         }
         apiGetRaffles();
-    }, [result]);
+    }, []);
     
     return (
         <div className="Home">

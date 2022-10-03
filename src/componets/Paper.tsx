@@ -15,7 +15,36 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const lightTheme = createTheme({ palette: { mode: 'light' } });
 
-export default function Elevation() {
+type resultProps = {
+    name: string
+    idRaffle: number
+    RaffleName: string
+    RaffleParticipants: number
+    RaffleUserDrawn: number
+    date: string
+    description: string
+};
+
+export default function Elevation(args: any) {
+    
+    const [result, setResult] = React.useState<resultProps[]>([]);
+
+    React.useEffect(() => {
+
+        const apiGetRaffles = async () => {
+            const data = await fetch(`http://localhost:8080/users/profile/${args.id}`, {
+                method: "GET"
+            });
+            const jsonData = await data.json();
+            setResult(jsonData);
+        };
+        if(result){
+            apiGetRaffles();
+        }
+        apiGetRaffles();
+    }, [result]);
+
+
     return (
         <Grid container spacing={2}>
             {[lightTheme].map((theme, index) => (

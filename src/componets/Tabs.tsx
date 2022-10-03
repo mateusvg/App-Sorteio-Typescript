@@ -5,6 +5,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Form from './RafleForm'
+import FormList from './RafleFormListString'
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -14,16 +15,19 @@ export default function LabTabs() {
   };
 
   return (
-      <Box sx={{ width: '100%', typography: 'body1' }}>
+    <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Criar Sorteio" value="1" />
-
+            <Tab label="Criar Sorteio Numérico" value="1" />
+            <Tab label="Criar Sorteio Lista" value="2" />
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Form/>
+          <Form />
+        </TabPanel>
+        <TabPanel value="2">
+          <FormList />
         </TabPanel>
 
       </TabContext>
