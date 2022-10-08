@@ -48,6 +48,8 @@ export default function SignIn(props: any) {
             },
             body: JSON.stringify({ username: data.get('email'), password: data.get('password') }),
           })
+          props.setUser(data.get('email'))
+          console.log(resp)
           if (!resp.ok) {
             throw new Error(`Error! status: ${resp.status}`);
           }
@@ -56,7 +58,6 @@ export default function SignIn(props: any) {
             console.log('Usuário não validado')
             return false
           }else{
-            console.log(result.id)
             console.log('Usuário validado')
             return handleClickHome()
           }

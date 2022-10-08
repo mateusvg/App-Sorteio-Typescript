@@ -80,19 +80,6 @@ export default function MultilineTextFields(props: any) {
                     value={participantes}
                 />
 
-                <TextField
-                    id="outlined-number"
-                    label="Participantes/ Lista"
-                    type="number"
-                    name="participantes"
-                    placeholder="Quant."
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    onChange={event => setParticipantes(event.target.value)}
-                    value={participantes}
-                />
-
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         label="Data Sorteio"

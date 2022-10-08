@@ -23,16 +23,17 @@ type resultProps = {
     RaffleUserDrawn: number
     date: string
     description: string
+    email: string
 };
 
 export default function Elevation(args: any) {
     
     const [result, setResult] = React.useState<resultProps[]>([]);
-
+    console.log(args.props.user)
     React.useEffect(() => {
 
         const apiGetRaffles = async () => {
-            const data = await fetch(`http://localhost:8080/users/profile/${args.id}`, {
+            const data = await fetch(`https://good-luck-app-back-end.herokuapp.com/users/profile/${args.props.user}`, {
                 method: "GET"
             });
             const jsonData = await data.json();
@@ -42,9 +43,9 @@ export default function Elevation(args: any) {
             apiGetRaffles();
         }
         apiGetRaffles();
-    }, [result]);
+    }, []);
 
-
+console.log(result)
     return (
         <Grid container spacing={2}>
             {[lightTheme].map((theme, index) => (
@@ -60,13 +61,13 @@ export default function Elevation(args: any) {
                             }}
                         >
                             <Item >
-                                {`Nome= Nome usuario`}
+                                {`Nome= ${result[0]?.name}`}
                             </Item>
                             <Item >
-                                {`Email= Email usuario`}
+                                {`Email= ${result[0]?.email}`}
                             </Item>
                             <Item >
-                                {`Data Cadastro= Cadastro em`}
+                                {`Data Cadastro= 08/10/2022`}
                             </Item>
 
                         </Box>
